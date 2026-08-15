@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from okf_hermes_bridge import KnowledgeGraph, build_hermes_context
+from okf_hermes_bridge import KnowledgeGraph, build_context_envelope, build_hermes_context
 
 BUNDLE = Path(__file__).resolve().parents[1] / "sample-bundle"
 
@@ -15,7 +15,7 @@ def test_graph_follows_related_concept():
 
 def test_hermes_payload_is_bounded_and_attributed():
     graph = KnowledgeGraph.load(BUNDLE)
-    payload = build_hermes_context(graph, "배포 실패", max_nodes=2)
+    payload = build_context_envelope(graph, "배포 실패", max_nodes=2)
     assert set(payload) == {"context", "metadata"}
     assert "playbooks/deploy.md" in payload["context"]
     assert "playbooks/rollback.md" in payload["context"]
@@ -49,3 +49,8 @@ def test_policy_rejects_unbounded_context():
         assert "max_nodes" in str(exc)
     else:
         raise AssertionError("unsafe max_nodes must be rejected")
+
+
+def test_hermes_hook_contract_contains_only_context():
+    graph = KnowledgeGraph.load(BUNDLE)
+    assert set(build_hermes_context(graph, "배포 실패", max_nodes=2)) == {"context"}

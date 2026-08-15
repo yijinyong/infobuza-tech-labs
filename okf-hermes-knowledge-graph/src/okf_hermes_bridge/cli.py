@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from .graph import KnowledgeGraph, build_hermes_context
+from .graph import KnowledgeGraph, build_context_envelope
 
 
 def main():
@@ -11,7 +11,7 @@ def main():
     parser.add_argument("--max-nodes", type=int, default=3)
     parser.add_argument("--max-chars", type=int, default=6000)
     args = parser.parse_args()
-    payload = build_hermes_context(
+    payload = build_context_envelope(
         KnowledgeGraph.load(args.bundle), args.query,
         max_nodes=args.max_nodes, max_chars=args.max_chars,
     )

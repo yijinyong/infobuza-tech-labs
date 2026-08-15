@@ -63,7 +63,7 @@ class KnowledgeGraph:
         return selected
 
 
-def build_hermes_context(
+def build_context_envelope(
     graph: KnowledgeGraph,
     query: str,
     *,
@@ -89,3 +89,17 @@ def build_hermes_context(
             "truncated": len(chunks) < len(concepts),
         },
     }
+
+
+def build_hermes_context(
+    graph: KnowledgeGraph,
+    query: str,
+    *,
+    max_nodes: int = 3,
+    max_chars: int = 6000,
+) -> dict[str, str]:
+    """Return only the contract Hermes pre_llm_call accepts."""
+    envelope = build_context_envelope(
+        graph, query, max_nodes=max_nodes, max_chars=max_chars
+    )
+    return {"context": str(envelope["context"])}
