@@ -1,6 +1,6 @@
 # OKF × Hermes Agent Knowledge Graph Lab
 
-OKF 스타일 Markdown bundle에서 질문과 관련된 노드와 연결된 이웃만 찾아 Hermes Agent의 `pre_llm_call` 훅 반환 형식인 `{"context": "..."}`로 만드는 최소 실험입니다.
+OKF 스타일 Markdown bundle에서 질문과 관련된 노드와 연결된 이웃만 찾아 Hermes Agent의 `pre_llm_call` 훅 반환 형식으로 만드는 실용 예제입니다. 장애 대응, 입사자 온보딩, 가정용 정수기 관리 시나리오를 제공합니다.
 
 이 코드는 완전한 OKF v0.2 validator나 공식 Hermes 플러그인이 아닙니다. 두 프로젝트의 통합 경계를 재현하기 위한 교육용 bridge입니다.
 
@@ -14,3 +14,9 @@ python -m pytest
 ```
 
 Hermes 플러그인에서는 `pre_llm_call` 콜백이 `build_hermes_context(...)` 결과를 반환하도록 연결할 수 있습니다. 운영 적용 전에는 공식 OKF validator, 경로 접근 제어, 신뢰 등급, provenance 검증, 컨텍스트 크기 제한을 추가해야 합니다.
+
+## 더 읽기
+
+- [구조와 책임 분리](./ARCHITECTURE.md)
+- [업무·생활 실행 예제](./EXAMPLES.md)
+- [운영 적용 전 한계](./LIMITATIONS.md)

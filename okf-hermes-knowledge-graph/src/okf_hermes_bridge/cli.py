@@ -9,9 +9,11 @@ def main():
     parser.add_argument("bundle")
     parser.add_argument("query")
     parser.add_argument("--max-nodes", type=int, default=3)
+    parser.add_argument("--max-chars", type=int, default=6000)
     args = parser.parse_args()
     payload = build_hermes_context(
-        KnowledgeGraph.load(args.bundle), args.query, max_nodes=args.max_nodes
+        KnowledgeGraph.load(args.bundle), args.query,
+        max_nodes=args.max_nodes, max_chars=args.max_chars,
     )
     print(json.dumps(payload, ensure_ascii=False, indent=2))
 
