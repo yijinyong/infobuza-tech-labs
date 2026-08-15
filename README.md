@@ -15,6 +15,7 @@
 |---|---|---|
 | [mcp-2026-stateless-routing](./mcp-2026-stateless-routing) | MCP 2026-07-28 자기완결 요청과 로컬 세션의 라우팅 의존성 비교 | `python -m pytest` |
 | [okf-hermes-knowledge-graph](./okf-hermes-knowledge-graph) | OKF 그래프의 관련 노드만 Hermes 컨텍스트로 전달하는 최소 브리지 | `python -m pytest` |
+| [promptforge-prompts-as-code](./promptforge-prompts-as-code) | 모듈 프롬프트 컴파일·정적 검사·golden drift 재현 | `python -m pytest` |
 
 ## Clone
 
